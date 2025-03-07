@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bp7kbcikvby71"]
+
+[ext_resource type="Script" uid="uid://sevt4035ottk" path="res://elements/close_enemy/close_enemy.gd" id="1_606lu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0npn6"]
+size = Vector2(501, 20)
+
+[node name="CloseEnemy" type="StaticBody2D"]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("1_606lu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(241, 697)
+shape = SubResource("RectangleShape2D_0npn6")

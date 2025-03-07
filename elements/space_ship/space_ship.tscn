@@ -1,0 +1,79 @@
+[gd_scene load_steps=11 format=3 uid="uid://bedkhew0s8j3h"]
+
+[ext_resource type="Script" uid="uid://cn54w7gyf174x" path="res://elements/space_ship/space_ship.gd" id="1_al4wv"]
+[ext_resource type="Texture2D" uid="uid://dogf5on6vklqo" path="res://spaceship.png" id="2_klmva"]
+[ext_resource type="PackedScene" uid="uid://706fwyvgvhmf" path="res://elements/rocket/rocket.tscn" id="3_gwjkf"]
+[ext_resource type="AudioStream" uid="uid://c167upt7xq0ou" path="res://music/shoot.mp3" id="4_ndd4d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_klmva"]
+atlas = ExtResource("2_klmva")
+region = Rect2(0, 48, 48, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yp4ui"]
+atlas = ExtResource("2_klmva")
+region = Rect2(48, 48, 48, 45)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fwsjs"]
+atlas = ExtResource("2_klmva")
+region = Rect2(96, 48, 48, 45)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yq30a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_klmva")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yp4ui")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fwsjs")
+}],
+"loop": true,
+"name": &"right",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dvkca"]
+height = 72.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_klmva"]
+radius = 11.0
+height = 62.0
+
+[node name="SpaceShip" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_al4wv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(4.76837e-07, 0)
+scale = Vector2(1.875, 1.875)
+sprite_frames = SubResource("SpriteFrames_yq30a")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_dvkca")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, 7)
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_klmva")
+
+[node name="Rocket" parent="." instance=ExtResource("3_gwjkf")]
+position = Vector2(0, -53)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_ndd4d")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

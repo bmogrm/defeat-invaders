@@ -1,0 +1,40 @@
+[gd_scene load_steps=9 format=3 uid="uid://b5df02jb1dfdt"]
+
+[ext_resource type="Script" uid="uid://cybry51ih5ck8" path="res://battle.gd" id="1_du3dr"]
+[ext_resource type="Texture2D" uid="uid://dhn6ixe8vpk0c" path="res://128x Reverse Invaders.png" id="1_lyvw1"]
+[ext_resource type="PackedScene" uid="uid://lfp22lbc8g2g" path="res://ui/hud/hud.tscn" id="1_vl8ec"]
+[ext_resource type="PackedScene" uid="uid://bedkhew0s8j3h" path="res://elements/space_ship/space_ship.tscn" id="2_fes1m"]
+[ext_resource type="PackedScene" uid="uid://bpf4kjbw1ml0n" path="res://elements/wall/wall.tscn" id="3_74lah"]
+[ext_resource type="PackedScene" uid="uid://4y4lmf5ib17p" path="res://elements/enemy_group/enemy_group.tscn" id="4_pjhth"]
+[ext_resource type="AudioStream" uid="uid://ojab2cv4nuek" path="res://music/background-new.mp3" id="7_b5jko"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2o8ol"]
+atlas = ExtResource("1_lyvw1")
+
+[node name="Battle" type="Node2D"]
+script = ExtResource("1_du3dr")
+
+[node name="HUD" parent="." instance=ExtResource("1_vl8ec")]
+
+[node name="Background" type="Sprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(240, 400)
+scale = Vector2(3.75, 6.25)
+texture = SubResource("AtlasTexture_2o8ol")
+region_enabled = true
+region_rect = Rect2(0, 0, 128, 128)
+region_filter_clip_enabled = true
+
+[node name="SpaceShip" parent="." instance=ExtResource("2_fes1m")]
+position = Vector2(238, 755)
+
+[node name="Wall" parent="." instance=ExtResource("3_74lah")]
+
+[node name="Wall2" parent="." instance=ExtResource("3_74lah")]
+position = Vector2(480, 0)
+
+[node name="EnemyGroup" parent="." instance=ExtResource("4_pjhth")]
+position = Vector2(-31, 51)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_b5jko")

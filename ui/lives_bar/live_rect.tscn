@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://iajvnkwgbut8"]
+
+[ext_resource type="Texture2D" uid="uid://dhn6ixe8vpk0c" path="res://128x Reverse Invaders.png" id="1_77kic"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c8col"]
+atlas = ExtResource("1_77kic")
+region = Rect2(176, 96, 16, 16)
+
+[node name="LiveRect" type="TextureRect"]
+custom_minimum_size = Vector2(32, 32)
+texture = SubResource("AtlasTexture_c8col")
+expand_mode = 1
+stretch_mode = 5

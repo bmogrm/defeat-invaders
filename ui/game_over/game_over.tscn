@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhtgr6gfvkr8p"]
+
+[ext_resource type="Script" uid="uid://coiifadqkeegc" path="res://ui/game_over/game_over.gd" id="1_0e2h4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ns3eh"]
+font_size = 32
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ymac0"]
+bg_color = Color(0.262932, 0.262932, 0.262932, 1)
+
+[node name="GameOver" type="CanvasLayer" groups=["GameOverGroup"]]
+process_mode = 3
+script = ExtResource("1_0e2h4")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.85098)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 300
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 300
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "You survived - 20 levels"
+label_settings = SubResource("LabelSettings_ns3eh")
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "GAME OVER"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_ymac0")
+text = "RESTART"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

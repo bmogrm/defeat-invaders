@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://b758hdrldq3y3"]
+
+[ext_resource type="Texture2D" uid="uid://dhn6ixe8vpk0c" path="res://128x Reverse Invaders.png" id="1_tc3c7"]
+[ext_resource type="Script" uid="uid://bvejknqgjv16s" path="res://elements/rocket/enemy_rocket.gd" id="1_ulp3s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rr6c4"]
+size = Vector2(12, 30)
+
+[node name="EnemyRocket" type="CharacterBody2D"]
+top_level = true
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_ulp3s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("1_tc3c7")
+region_enabled = true
+region_rect = Rect2(192, 16, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_rr6c4")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(0.6, 1.5)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
